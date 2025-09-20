@@ -122,6 +122,18 @@ impl Emu {
         self.execute(op);
     }
 
+    pub fn tick_timers(&mut self) {
+        if self.dt > 0 {
+            self.dt -= 1;
+        }
+        if self.st > 0 {
+            if self.st == 1 {
+                // BEEP
+            }
+            self.st -= 1;
+        }
+    }
+
     /// Grabs the opcode we're about to execute for use in the next steps of this
     /// cycle.
     fn fetch(&mut self) -> u16 {
